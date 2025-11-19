@@ -1,0 +1,116 @@
+[
+  {
+    "id": 1,
+    "title": "Heavenly Law",
+    "author": "Moonlight Blade",
+    "description": "A young cultivator walks the path to godhood...",
+    "cover": "/covers/heavenly-law.jpg",
+    "chapters": [
+      {
+        "id": 1,
+        "title": "Chapter 1 - Awakening",
+        "content": "Reizel opened his eyes to the blinding light..."
+      },
+      {
+        "id": 2,
+        "title": "Chapter 2 - The First Step",
+        "content": "The path to power begins with a single step..."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Eternal Night",
+    "author": "Qin Mo",
+    "description": "In the endless void, a shadow rises to challenge fate itself...",
+    "cover": "/covers/eternal-night.jpg",
+    "chapters": [
+      {
+        "id": 1,
+        "title": "Chapter 1 - Descent",
+        "content": "Darkness spread across the heavens as Qin Mo descended..."
+      },
+      {
+        "id": 2,
+        "title": "Chapter 2 - Shadow’s Oath",
+        "content": "Sworn to the abyss, he walks alone beneath eternal stars..."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Iron Heaven",
+    "author": "Reizel",
+    "description": "A war between gods and machines decides the fate of worlds...",
+    "cover": "/covers/iron-heaven.jpg",
+    "chapters": [
+      {
+        "id": 1,
+        "title": "Chapter 1 - The Battlefield",
+        "content": "Metal clashed against metal as the sky rained fire..."
+      },
+      {
+        "id": 2,
+        "title": "Chapter 2 - Forged in War",
+        "content": "From the ashes of destruction, a hero is born..."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Fallen Star Chronicle",
+    "author": "Liu Tian",
+    "description": "A boy marked by a fallen star discovers a destiny that can shake the heavens.",
+    "cover": "/covers/fallen-star.jpg",
+    "chapters": [
+      {
+        "id": 1,
+        "title": "Chapter 1 - The Starfall",
+        "content": "The night sky shattered as a blazing star fell toward the earth..."
+      },
+      {
+        "id": 2,
+        "title": "Chapter 2 - Hidden Power",
+        "content": "Deep within his chest, something ancient began to stir..."
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Shadowblade Legacy",
+    "author": "Night Scribe",
+    "description": "An assassin cursed by darkness seeks redemption in a world ruled by blades.",
+    "cover": "/covers/shadowblade.jpg",
+    "chapters": [
+      {
+        "id": 1,
+        "title": "Chapter 1 - Blood Moon",
+        "content": "Under the red moon, the Shadowblade walked a path only he could see..."
+      },
+      {
+        "id": 2,
+        "title": "Chapter 2 - Ghost of the Past",
+        "content": "The whispers of old enemies clawed their way back into his mind..."
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Chronicles of the Voidwalker",
+    "author": "Astra Verin",
+    "description": "Gifted with the ability to step between worlds, a lone traveler faces cosmic threats.",
+    "cover": "/covers/voidwalker.jpg",
+    "chapters": [
+      {
+        "id": 1,
+        "title": "Chapter 1 - Between Worlds",
+        "content": "The void twisted as the traveler stepped across the first boundary..."
+      },
+      {
+        "id": 2,
+        "title": "Chapter 2 - Echoes of Infinity",
+        "content": "Time bent and folded as forgotten voices called his name..."
+      }
+    ]
+  }
+]
