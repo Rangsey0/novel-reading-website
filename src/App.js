@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import NovelDetails from "./pages/NovelDetails";
 import Chapter from "./pages/Chapter";
+import AllNovels from "./pages/AllNovels";
 
 function App() {
   return (
@@ -12,6 +13,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/novel/:id" element={<NovelDetails />} />
         <Route path="/novel/:id/chapter/:chapterId" element={<Chapter />} />
+
+        {/* New routes */}
+        <Route path="/browse" element={<AllNovels />} />
       </Routes>
     </Router>
   );

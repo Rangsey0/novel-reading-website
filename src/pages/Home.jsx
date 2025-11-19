@@ -8,8 +8,8 @@ function Home() {
     fetch("/data/novels.json")
       .then((res) => res.json())
       .then((data) => {
-        // Just use all novels from JSON file
-        setNovels(data);
+        // Only take the first novels
+        setNovels(data.slice(0, 6));
       })
       .catch((error) => console.error("Error loading novels:", error));
   }, []);

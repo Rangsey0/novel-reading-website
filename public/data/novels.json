@@ -112,5 +112,195 @@
         "content": "Time bent and folded as forgotten voices called his name..."
       }
     ]
+  },
+  {
+    "id": 7,
+    "title": "Celestial Reign",
+    "author": "Aurora Sky",
+    "description": "A young prince discovers he is the key to the balance of the heavens.",
+    "cover": "/covers/celestial-reign.jpg",
+    "chapters": [
+      {
+        "id": 1,
+        "title": "Chapter 1 - Starfall",
+        "content": "Stars rained upon the kingdom..."
+      },
+      {
+        "id": 2,
+        "title": "Chapter 2 - Awakening Power",
+        "content": "His power surged beyond imagination..."
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Nightshade Academy",
+    "author": "Luna Raven",
+    "description": "A hidden academy trains assassins in a world of shadows and intrigue.",
+    "cover": "/covers/nightshade-academy.jpg",
+    "chapters": [
+      {
+        "id": 1,
+        "title": "Chapter 1 - The New Recruit",
+        "content": "The gates opened to the secret academy..."
+      },
+      {
+        "id": 2,
+        "title": "Chapter 2 - First Trial",
+        "content": "A test of skill and courage awaited them..."
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Echoes of Eternity",
+    "author": "Kai Morrison",
+    "description": "A traveler navigates the echoes of the past to change the fate of the future.",
+    "cover": "/covers/echoes-eternity.jpg",
+    "chapters": [
+      {
+        "id": 1,
+        "title": "Chapter 1 - The Mirror",
+        "content": "Reflections of time blurred the lines..."
+      },
+      {
+        "id": 2,
+        "title": "Chapter 2 - Forgotten Memories",
+        "content": "Memories long lost resurfaced..."
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Dragon’s Oath",
+    "author": "Seraphine Ember",
+    "description": "A warrior forges a bond with a dragon to defend his kingdom.",
+    "cover": "/covers/dragons-oath.jpg",
+    "chapters": [
+      {
+        "id": 1,
+        "title": "Chapter 1 - The Bond",
+        "content": "The dragon’s roar shook the mountains..."
+      },
+      {
+        "id": 2,
+        "title": "Chapter 2 - Flames of Trial",
+        "content": "Fire tested his courage and strength..."
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "title": "Forsaken Realms",
+    "author": "Orin Vale",
+    "description": "In forgotten lands, heroes rise to reclaim lost glory.",
+    "cover": "/covers/forsaken-realms.jpg",
+    "chapters": [
+      {
+        "id": 1,
+        "title": "Chapter 1 - The Exile",
+        "content": "Banished from the kingdom, he wandered..."
+      },
+      {
+        "id": 2,
+        "title": "Chapter 2 - Hidden Secrets",
+        "content": "Ancient ruins revealed untold power..."
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "title": "Soulbound",
+    "author": "Elysia Moon",
+    "description": "A cursed warrior must find the soul he lost to save the world.",
+    "cover": "/covers/soulbound.jpg",
+    "chapters": [
+      {
+        "id": 1,
+        "title": "Chapter 1 - The Curse",
+        "content": "A shadow lingered within his heart..."
+      },
+      {
+        "id": 2,
+        "title": "Chapter 2 - Awakening",
+        "content": "He felt a power stirring deep inside..."
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "title": "Iron Legacy",
+    "author": "Dante Krane",
+    "description": "An ancient empire rises from ashes, led by a young hero of destiny.",
+    "cover": "/covers/iron-legacy.jpg",
+    "chapters": [
+      {
+        "id": 1,
+        "title": "Chapter 1 - Rebirth",
+        "content": "The empire’s banners rose once more..."
+      },
+      {
+        "id": 2,
+        "title": "Chapter 2 - Trials of Power",
+        "content": "War and politics tested his resolve..."
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "title": "Veil of Shadows",
+    "author": "Selene Frost",
+    "description": "In a city of darkness, a lone detective uncovers supernatural conspiracies.",
+    "cover": "/covers/veil-of-shadows.jpg",
+    "chapters": [
+      {
+        "id": 1,
+        "title": "Chapter 1 - Dark Alley",
+        "content": "Fog rolled through the silent streets..."
+      },
+      {
+        "id": 2,
+        "title": "Chapter 2 - Hidden Threats",
+        "content": "Eyes watched from the shadows..."
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "title": "Chronomancer’s War",
+    "author": "Thalos Veyn",
+    "description": "Time itself becomes a weapon in the war for the multiverse.",
+    "cover": "/covers/chronomancer-war.jpg",
+    "chapters": [
+      {
+        "id": 1,
+        "title": "Chapter 1 - Temporal Rift",
+        "content": "The sky tore asunder with time anomalies..."
+      },
+      {
+        "id": 2,
+        "title": "Chapter 2 - Paradox",
+        "content": "Choices echoed across centuries..."
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "title": "Shattered Kingdoms",
+    "author": "Lyra Dawn",
+    "description": "A princess fights to unite fractured lands under one banner.",
+    "cover": "/covers/shattered-kingdoms.jpg",
+    "chapters": [
+      {
+        "id": 1,
+        "title": "Chapter 1 - Broken Crown",
+        "content": "The kingdom lay in ruins..."
+      },
+      {
+        "id": 2,
+        "title": "Chapter 2 - Rise of the Heir",
+        "content": "She gathered allies from every corner..."
+      }
+    ]
   }
 ]
