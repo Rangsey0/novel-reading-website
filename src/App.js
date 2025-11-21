@@ -7,17 +7,22 @@ import AllNovels from "./pages/AllNovels";
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/novel/:id" element={<NovelDetails />} />
-        <Route path="/novel/:id/chapter/:chapterId" element={<Chapter />} />
+    <div className="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white transition-colors duration-300">
+      <Router>
+        <Navbar />
 
-        {/* New routes */}
-        <Route path="/browse" element={<AllNovels />} />
-      </Routes>
-    </Router>
+        <div className="pt-4 px-2">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/novel/:id" element={<NovelDetails />} />
+            <Route path="/novel/:id/chapter/:chapterId" element={<Chapter />} />
+
+            {/* New routes */}
+            <Route path="/browse" element={<AllNovels />} />
+          </Routes>
+        </div>
+      </Router>
+    </div>
   );
 }
 
