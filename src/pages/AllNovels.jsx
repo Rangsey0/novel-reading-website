@@ -29,6 +29,7 @@ function AllNovels() {
               alt={novel.title}
               className="w-full h-72 object-cover brightness-90 group-hover:brightness-75 transition-all duration-300"
             />
+
             {/* Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-300"></div>
 
@@ -40,6 +41,21 @@ function AllNovels() {
               <p className="text-gray-300 text-sm mt-1 drop-shadow-sm">
                 by {novel.author}
               </p>
+
+              {/* Genres */}
+              {novel.genre && (
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {novel.genre.map((g, index) => (
+                    <span
+                      key={index}
+                      className="bg-purple-600/70 text-white text-xs px-2 py-1 rounded-full"
+                    >
+                      {g}
+                    </span>
+                  ))}
+                </div>
+              )}
+
               <p className="text-gray-200 text-sm mt-2 line-clamp-3 drop-shadow-sm">
                 {novel.description}
               </p>

@@ -13,9 +13,6 @@ function NovelCard({ novel }) {
       onClick={goToDetail}
       className="relative group cursor-pointer rounded-2xl overflow-hidden shadow-2xl hover:shadow-4xl transition-transform transform hover:scale-105 hover:-translate-y-1 duration-500"
     >
-      {/* Glowing animated border */}
-      <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 rounded-2xl blur opacity-50 group-hover:opacity-100 transition-all duration-500"></div>
-
       {/* Cover Image */}
       <img
         src={novel.cover}
@@ -32,25 +29,22 @@ function NovelCard({ novel }) {
         <p className="text-sm text-gray-200">{novel.author}</p>
         <p className="mt-2 text-xs line-clamp-3">{novel.description}</p>
 
+        {/* Genres */}
+        <div className="mt-2 flex flex-wrap gap-2">
+          {novel.genre.map((g, index) => (
+            <span
+              key={index}
+              className="bg-purple-600/70 text-white text-xs px-2 py-1 rounded-full"
+            >
+              {g}
+            </span>
+          ))}
+        </div>
+
         {/* Hover info panel */}
         <div className="mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-xs text-gray-300">
           Click to read more & explore this novel
         </div>
-      </div>
-
-      {/* Floating particles (simple glowing dots) */}
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
-        {[...Array(6)].map((_, i) => (
-          <span
-            key={i}
-            className={`absolute w-2 h-2 bg-white rounded-full opacity-70 animate-pulse`}
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random()}s`,
-            }}
-          ></span>
-        ))}
       </div>
     </div>
   );

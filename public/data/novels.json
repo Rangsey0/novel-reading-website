@@ -3,6 +3,7 @@
     "id": 1,
     "title": "Heavenly Law",
     "author": "Moonlight Blade",
+    "genre": ["Cultivation", "Fantasy", "Adventure"],
     "description": "A young cultivator walks the path to godhood...",
     "cover": "/covers/heavenly-law.jpg",
     "chapters": [
@@ -22,6 +23,7 @@
     "id": 2,
     "title": "Eternal Night",
     "author": "Qin Mo",
+    "genre": ["Dark Fantasy", "Supernatural", "Action"],
     "description": "In the endless void, a shadow rises to challenge fate itself...",
     "cover": "/covers/eternal-night.jpg",
     "chapters": [
@@ -41,6 +43,7 @@
     "id": 3,
     "title": "Iron Heaven",
     "author": "Reizel",
+    "genre": ["Sci-Fi", "Mecha", "Action"],
     "description": "A war between gods and machines decides the fate of worlds...",
     "cover": "/covers/iron-heaven.jpg",
     "chapters": [
@@ -60,6 +63,7 @@
     "id": 4,
     "title": "Fallen Star Chronicle",
     "author": "Liu Tian",
+    "genre": ["Fantasy", "Adventure", "Coming-of-Age"],
     "description": "A boy marked by a fallen star discovers a destiny that can shake the heavens.",
     "cover": "/covers/fallen-star.jpg",
     "chapters": [
@@ -79,6 +83,7 @@
     "id": 5,
     "title": "Shadowblade Legacy",
     "author": "Night Scribe",
+    "genre": ["Dark Fantasy", "Assassin", "Action"],
     "description": "An assassin cursed by darkness seeks redemption in a world ruled by blades.",
     "cover": "/covers/shadowblade.jpg",
     "chapters": [
@@ -98,6 +103,7 @@
     "id": 6,
     "title": "Chronicles of the Voidwalker",
     "author": "Astra Verin",
+    "genre": ["Sci-Fi", "Space Travel", "Adventure"],
     "description": "Gifted with the ability to step between worlds, a lone traveler faces cosmic threats.",
     "cover": "/covers/voidwalker.jpg",
     "chapters": [
@@ -117,6 +123,7 @@
     "id": 7,
     "title": "Celestial Reign",
     "author": "Aurora Sky",
+    "genre": ["Fantasy", "Adventure", "Royalty"],
     "description": "A young prince discovers he is the key to the balance of the heavens.",
     "cover": "/covers/celestial-reign.jpg",
     "chapters": [
@@ -136,6 +143,7 @@
     "id": 8,
     "title": "Nightshade Academy",
     "author": "Luna Raven",
+    "genre": ["Mystery", "Supernatural", "Academy"],
     "description": "A hidden academy trains assassins in a world of shadows and intrigue.",
     "cover": "/covers/nightshade-academy.jpg",
     "chapters": [
@@ -155,6 +163,7 @@
     "id": 9,
     "title": "Echoes of Eternity",
     "author": "Kai Morrison",
+    "genre": ["Time Travel", "Fantasy", "Adventure"],
     "description": "A traveler navigates the echoes of the past to change the fate of the future.",
     "cover": "/covers/echoes-eternity.jpg",
     "chapters": [
@@ -174,6 +183,7 @@
     "id": 10,
     "title": "Dragon’s Oath",
     "author": "Seraphine Ember",
+    "genre": ["Fantasy", "Dragons", "Adventure"],
     "description": "A warrior forges a bond with a dragon to defend his kingdom.",
     "cover": "/covers/dragons-oath.jpg",
     "chapters": [
@@ -193,6 +203,7 @@
     "id": 11,
     "title": "Forsaken Realms",
     "author": "Orin Vale",
+    "genre": ["Fantasy", "Adventure"],
     "description": "In forgotten lands, heroes rise to reclaim lost glory.",
     "cover": "/covers/forsaken-realms.jpg",
     "chapters": [
@@ -212,6 +223,7 @@
     "id": 12,
     "title": "Soulbound",
     "author": "Elysia Moon",
+    "genre": ["Dark Fantasy", "Adventure", "Magic"],
     "description": "A cursed warrior must find the soul he lost to save the world.",
     "cover": "/covers/soulbound.jpg",
     "chapters": [
@@ -231,6 +243,7 @@
     "id": 13,
     "title": "Iron Legacy",
     "author": "Dante Krane",
+    "genre": ["Action", "Adventure", "Heroic"],
     "description": "An ancient empire rises from ashes, led by a young hero of destiny.",
     "cover": "/covers/iron-legacy.jpg",
     "chapters": [
@@ -250,6 +263,7 @@
     "id": 14,
     "title": "Veil of Shadows",
     "author": "Selene Frost",
+    "genre": ["Mystery", "Supernatural", "Thriller"],
     "description": "In a city of darkness, a lone detective uncovers supernatural conspiracies.",
     "cover": "/covers/veil-of-shadows.jpg",
     "chapters": [
@@ -269,6 +283,7 @@
     "id": 15,
     "title": "Chronomancer’s War",
     "author": "Thalos Veyn",
+    "genre": ["Time Travel", "Fantasy", "Magic"],
     "description": "Time itself becomes a weapon in the war for the multiverse.",
     "cover": "/covers/chronomancer-war.jpg",
     "chapters": [
@@ -288,6 +303,7 @@
     "id": 16,
     "title": "Shattered Kingdoms",
     "author": "Lyra Dawn",
+    "genre": ["Fantasy", "Adventure", "Royalty"],
     "description": "A princess fights to unite fractured lands under one banner.",
     "cover": "/covers/shattered-kingdoms.jpg",
     "chapters": [
