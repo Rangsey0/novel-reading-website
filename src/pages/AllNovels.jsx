@@ -4,36 +4,79 @@ import { Link } from "react-router-dom";
 function AllNovels() {
   const [novels, setNovels] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedGenre, setSelectedGenre] = useState("All");
+  const [genres, setGenres] = useState([]);
 
-  const novelsPerPage = 12; // You can change this
+  const novelsPerPage = 12;
 
   useEffect(() => {
     fetch("/data/novels.json")
       .then((res) => res.json())
-      .then((data) => setNovels(data))
+      .then((data) => {
+        setNovels(data);
+
+        // extract all unique genres from novels
+        const allGenres = new Set();
+        data.forEach((novel) => {
+          if (novel.genre) {
+            novel.genre.forEach((g) => allGenres.add(g));
+          }
+        });
+
+        setGenres(["All", ...Array.from(allGenres)]);
+      })
       .catch((err) => console.error("Failed to load novels:", err));
   }, []);
 
-  // Calculate pages
-  const totalPages = Math.ceil(novels.length / novelsPerPage);
+  // Filter novels by selected genre
+  const filteredNovels =
+    selectedGenre === "All"
+      ? novels
+      : novels.filter((novel) => novel.genre?.includes(selectedGenre));
 
-  // Slice novels for current page
+  // Pagination
+  const totalPages = Math.ceil(filteredNovels.length / novelsPerPage);
+
   const indexOfLast = currentPage * novelsPerPage;
   const indexOfFirst = indexOfLast - novelsPerPage;
-  const currentNovels = novels.slice(indexOfFirst, indexOfLast);
+  const currentNovels = filteredNovels.slice(indexOfFirst, indexOfLast);
 
   const goToPage = (page) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
-      window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to top
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-5xl font-extrabold mb-10 text-center bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-blue-500 to-purple-500 drop-shadow-lg animate-pulse">
-        All Novels
-      </h1>
+      {/* Genre Filter */}
+      <div className="flex justify-center mb-8">
+        <select
+          value={selectedGenre}
+          onChange={(e) => {
+            setSelectedGenre(e.target.value);
+            setCurrentPage(1);
+          }}
+          className="
+      px-4 py-2 rounded-lg shadow-md border
+      bg-white text-gray-800
+      dark:bg-gray-800 dark:text-gray-200 dark:border-gray-700
+      focus:outline-none focus:ring-2 focus:ring-indigo-500
+      transition
+    "
+        >
+          {genres.map((g, idx) => (
+            <option
+              key={idx}
+              value={g}
+              className="dark:bg-gray-800 dark:text-gray-200"
+            >
+              {g}
+            </option>
+          ))}
+        </select>
+      </div>
 
       {/* Novels Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
@@ -49,15 +92,11 @@ function AllNovels() {
               className="w-full h-72 object-cover brightness-90 group-hover:brightness-75 transition-all duration-300"
             />
 
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-300"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70 group-hover:opacity-90"></div>
 
             <div className="absolute bottom-0 p-4">
-              <h2 className="text-xl font-bold text-white drop-shadow-lg">
-                {novel.title}
-              </h2>
-              <p className="text-gray-300 text-sm mt-1 drop-shadow-sm">
-                by {novel.author}
-              </p>
+              <h2 className="text-xl font-bold text-white">{novel.title}</h2>
+              <p className="text-gray-300 text-sm mt-1">by {novel.author}</p>
 
               {/* Genres */}
               {novel.genre && (
@@ -73,7 +112,7 @@ function AllNovels() {
                 </div>
               )}
 
-              <p className="text-gray-200 text-sm mt-2 line-clamp-3 drop-shadow-sm">
+              <p className="text-gray-200 text-sm mt-2 line-clamp-3">
                 {novel.description}
               </p>
             </div>
