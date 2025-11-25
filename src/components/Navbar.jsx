@@ -61,18 +61,6 @@ function Navbar() {
                 >
                   Popular
                 </Link>
-                <Link
-                  to="/latest"
-                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
-                >
-                  Latest Updates
-                </Link>
-                <Link
-                  to="/genres"
-                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
-                >
-                  Genres
-                </Link>
               </div>
             )}
           </div>
