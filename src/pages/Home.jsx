@@ -1,24 +1,44 @@
 import React, { useEffect, useState } from "react";
 import NovelCard from "../components/NovelCard";
+import MostViewedCard from "../components/MostViewedCard";
 
 function Home() {
   const [novels, setNovels] = useState([]);
+  const [mostViewed, setMostViewed] = useState([]);
 
   useEffect(() => {
     fetch("/data/novels.json")
       .then((res) => res.json())
       .then((data) => {
-        // Only take the first novels
+        // Left side: first 6 novels
         setNovels(data.slice(0, 6));
+
+        // Right side: sort by views (highest → lowest)
+        const sorted = [...data].sort((a, b) => b.views - a.views);
+        setMostViewed(sorted.slice(0, 15)); // top 15
       })
       .catch((error) => console.error("Error loading novels:", error));
   }, []);
 
   return (
-    <div className="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      {novels.map((novel) => (
-        <NovelCard key={novel.id} novel={novel} />
-      ))}
+    <div className="p-6 grid grid-cols-1 lg:grid-cols-4 gap-6">
+      {/* LEFT SIDE — Latest novels */}
+      <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {novels.map((novel) => (
+          <NovelCard key={novel.id} novel={novel} />
+        ))}
+      </div>
+
+      {/* RIGHT SIDE — Most Viewed */}
+      <div className="lg:col-span-1 bg-white dark:bg-gray-900 p-4 rounded-xl shadow-md h-[600px] overflow-y-auto">
+        <h2 className="text-xl font-bold mb-4">Most Viewed</h2>
+
+        <div className="space-y-4">
+          {mostViewed.map((novel, index) => (
+            <MostViewedCard key={novel.id} novel={novel} rank={index + 1} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
