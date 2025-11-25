@@ -6,6 +6,10 @@
     "genre": ["Cultivation", "Fantasy", "Adventure"],
     "description": "A young cultivator walks the path to godhood...",
     "cover": "/covers/heavenly-law.jpg",
+    "isPopular": true,
+    "views": 125000,
+    "rating": 4.9,
+    "updatedAt": "2025-02-01",
     "chapters": [
       {
         "id": 1,
@@ -26,6 +30,10 @@
     "genre": ["Dark Fantasy", "Supernatural", "Action"],
     "description": "In the endless void, a shadow rises to challenge fate itself...",
     "cover": "/covers/eternal-night.jpg",
+    "isPopular": true,
+    "views": 98000,
+    "rating": 4.7,
+    "updatedAt": "2025-01-25",
     "chapters": [
       {
         "id": 1,
@@ -46,6 +54,10 @@
     "genre": ["Sci-Fi", "Mecha", "Action"],
     "description": "A war between gods and machines decides the fate of worlds...",
     "cover": "/covers/iron-heaven.jpg",
+    "isPopular": true,
+    "views": 86000,
+    "rating": 4.8,
+    "updatedAt": "2025-02-10",
     "chapters": [
       {
         "id": 1,
@@ -66,6 +78,10 @@
     "genre": ["Fantasy", "Adventure", "Coming-of-Age"],
     "description": "A boy marked by a fallen star discovers a destiny that can shake the heavens.",
     "cover": "/covers/fallen-star.jpg",
+    "isPopular": true,
+    "views": 72000,
+    "rating": 4.6,
+    "updatedAt": "2025-01-18",
     "chapters": [
       {
         "id": 1,
@@ -86,6 +102,10 @@
     "genre": ["Dark Fantasy", "Assassin", "Action"],
     "description": "An assassin cursed by darkness seeks redemption in a world ruled by blades.",
     "cover": "/covers/shadowblade.jpg",
+    "isPopular": true,
+    "views": 65000,
+    "rating": 4.5,
+    "updatedAt": "2025-02-05",
     "chapters": [
       {
         "id": 1,
@@ -106,6 +126,10 @@
     "genre": ["Sci-Fi", "Space Travel", "Adventure"],
     "description": "Gifted with the ability to step between worlds, a lone traveler faces cosmic threats.",
     "cover": "/covers/voidwalker.jpg",
+    "isPopular": true,
+    "views": 58000,
+    "rating": 4.4,
+    "updatedAt": "2025-01-30",
     "chapters": [
       {
         "id": 1,
@@ -126,6 +150,10 @@
     "genre": ["Fantasy", "Adventure", "Royalty"],
     "description": "A young prince discovers he is the key to the balance of the heavens.",
     "cover": "/covers/celestial-reign.jpg",
+    "isPopular": true,
+    "views": 49000,
+    "rating": 4.6,
+    "updatedAt": "2025-02-08",
     "chapters": [
       {
         "id": 1,
@@ -146,6 +174,10 @@
     "genre": ["Mystery", "Supernatural", "Academy"],
     "description": "A hidden academy trains assassins in a world of shadows and intrigue.",
     "cover": "/covers/nightshade-academy.jpg",
+    "isPopular": true,
+    "views": 45000,
+    "rating": 4.3,
+    "updatedAt": "2025-01-22",
     "chapters": [
       {
         "id": 1,
@@ -166,6 +198,10 @@
     "genre": ["Time Travel", "Fantasy", "Adventure"],
     "description": "A traveler navigates the echoes of the past to change the fate of the future.",
     "cover": "/covers/echoes-eternity.jpg",
+    "isPopular": true,
+    "views": 39000,
+    "rating": 4.4,
+    "updatedAt": "2025-01-28",
     "chapters": [
       {
         "id": 1,
@@ -186,6 +222,10 @@
     "genre": ["Fantasy", "Dragons", "Adventure"],
     "description": "A warrior forges a bond with a dragon to defend his kingdom.",
     "cover": "/covers/dragons-oath.jpg",
+    "isPopular": true,
+    "views": 52000,
+    "rating": 4.7,
+    "updatedAt": "2025-02-09",
     "chapters": [
       {
         "id": 1,
@@ -206,6 +246,10 @@
     "genre": ["Fantasy", "Adventure"],
     "description": "In forgotten lands, heroes rise to reclaim lost glory.",
     "cover": "/covers/forsaken-realms.jpg",
+    "isPopular": true,
+    "views": 44000,
+    "rating": 4.2,
+    "updatedAt": "2025-01-12",
     "chapters": [
       {
         "id": 1,
@@ -226,6 +270,10 @@
     "genre": ["Dark Fantasy", "Adventure", "Magic"],
     "description": "A cursed warrior must find the soul he lost to save the world.",
     "cover": "/covers/soulbound.jpg",
+    "isPopular": true,
+    "views": 47000,
+    "rating": 4.5,
+    "updatedAt": "2025-02-03",
     "chapters": [
       {
         "id": 1,
@@ -246,6 +294,10 @@
     "genre": ["Action", "Adventure", "Heroic"],
     "description": "An ancient empire rises from ashes, led by a young hero of destiny.",
     "cover": "/covers/iron-legacy.jpg",
+    "isPopular": true,
+    "views": 51000,
+    "rating": 4.6,
+    "updatedAt": "2025-01-20",
     "chapters": [
       {
         "id": 1,
@@ -266,6 +318,10 @@
     "genre": ["Mystery", "Supernatural", "Thriller"],
     "description": "In a city of darkness, a lone detective uncovers supernatural conspiracies.",
     "cover": "/covers/veil-of-shadows.jpg",
+    "isPopular": true,
+    "views": 37000,
+    "rating": 4.3,
+    "updatedAt": "2025-02-06",
     "chapters": [
       {
         "id": 1,
@@ -286,6 +342,10 @@
     "genre": ["Time Travel", "Fantasy", "Magic"],
     "description": "Time itself becomes a weapon in the war for the multiverse.",
     "cover": "/covers/chronomancer-war.jpg",
+    "isPopular": true,
+    "views": 33000,
+    "rating": 4.4,
+    "updatedAt": "2025-01-27",
     "chapters": [
       {
         "id": 1,
@@ -306,6 +366,10 @@
     "genre": ["Fantasy", "Adventure", "Royalty"],
     "description": "A princess fights to unite fractured lands under one banner.",
     "cover": "/covers/shattered-kingdoms.jpg",
+    "isPopular": true,
+    "views": 46000,
+    "rating": 4.5,
+    "updatedAt": "2025-02-07",
     "chapters": [
       {
         "id": 1,

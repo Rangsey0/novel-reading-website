@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import NovelDetails from "./pages/NovelDetails";
 import Chapter from "./pages/Chapter";
 import AllNovels from "./pages/AllNovels";
+import Popular from "./pages/Popular";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
 
             {/* New routes */}
             <Route path="/browse" element={<AllNovels />} />
+            <Route path="/popular" element={<Popular />} />
           </Routes>
         </div>
       </Router>
