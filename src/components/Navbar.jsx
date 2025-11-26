@@ -85,8 +85,8 @@ function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-white dark:bg-gray-800 border-t border-gray-300 dark:border-gray-700 px-4 py-3 space-y-3 animate-fade-in-down text-black dark:text-white">
-          {/* Theme Toggle Button */}
+        <div className="md:hidden bg-white dark:bg-gray-800 border-t border-gray-300 dark:border-gray-700 px-4 py-4 space-y-4 animate-fade-in-down text-black dark:text-white">
+          {/* Theme Toggle */}
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             className="w-full p-2 bg-gray-200 dark:bg-gray-700 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-all flex justify-center"
@@ -94,18 +94,29 @@ function Navbar() {
             {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
           </button>
 
+          {/* All Novels */}
           <Link
             to="/browse"
             onClick={() => setIsOpen(false)}
-            className="block text-lg hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors duration-300"
+            className="block text-lg py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-all"
           >
-            📚 Browse Novels
+            📚 All Novels
           </Link>
 
+          {/* Popular */}
+          <Link
+            to="/popular"
+            onClick={() => setIsOpen(false)}
+            className="block text-lg py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-all"
+          >
+            ⭐ Popular
+          </Link>
+
+          {/* Profile */}
           <Link
             to="/profile"
             onClick={() => setIsOpen(false)}
-            className="block bg-indigo-500 text-center py-2 rounded-lg hover:bg-indigo-600 transition-all duration-300 font-medium text-white"
+            className="block bg-indigo-500 text-center py-2 rounded-lg hover:bg-indigo-600 transition-all font-medium text-white"
           >
             Profile
           </Link>
