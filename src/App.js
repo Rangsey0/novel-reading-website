@@ -5,6 +5,7 @@ import NovelDetails from "./pages/NovelDetails";
 import Chapter from "./pages/Chapter";
 import AllNovels from "./pages/AllNovels";
 import Popular from "./pages/Popular";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             {/* New routes */}
             <Route path="/browse" element={<AllNovels />} />
             <Route path="/popular" element={<Popular />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </div>
       </Router>

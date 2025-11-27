@@ -4,13 +4,40 @@ import { useParams, Link } from "react-router-dom";
 function NovelDetails() {
   const { id } = useParams();
   const [novel, setNovel] = useState(null);
+  const [isSaved, setIsSaved] = useState(false);
 
+  // Load novel + check if saved
   useEffect(() => {
     fetch("/data/novels.json")
       .then((res) => res.json())
-      .then((data) => setNovel(data.find((n) => n.id === parseInt(id))))
+      .then((data) => {
+        const found = data.find((n) => n.id === parseInt(id));
+        setNovel(found);
+
+        // Check if already saved
+        const saved = JSON.parse(localStorage.getItem("savedNovels")) || [];
+        setIsSaved(saved.some((n) => n.id === parseInt(id)));
+      })
       .catch((error) => console.error("Error loading novel:", error));
   }, [id]);
+
+  // Save novel to localStorage
+  const saveNovel = () => {
+    if (!novel) return;
+
+    const saved = JSON.parse(localStorage.getItem("savedNovels")) || [];
+
+    if (!saved.some((n) => n.id === novel.id)) {
+      saved.push({
+        id: novel.id,
+        title: novel.title,
+        cover: novel.cover,
+        author: novel.author,
+      });
+      localStorage.setItem("savedNovels", JSON.stringify(saved));
+      setIsSaved(true);
+    }
+  };
 
   if (!novel)
     return <p className="text-center mt-10 text-gray-500">Loading...</p>;
@@ -32,9 +59,26 @@ function NovelDetails() {
 
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-50"></div>
 
-        <h1 className="absolute bottom-4 left-6 text-white text-4xl font-extrabold drop-shadow-xl">
-          {novel.title}
-        </h1>
+        <div className="absolute bottom-4 left-6 flex items-center gap-4">
+          <h1 className="text-white text-4xl font-extrabold drop-shadow-xl">
+            {novel.title}
+          </h1>
+
+          {/* Save Button */}
+          <button
+            onClick={saveNovel}
+            disabled={isSaved}
+            className={`px-4 py-2 rounded-xl text-white text-sm font-medium shadow-lg
+              transition-all duration-300
+              ${
+                isSaved
+                  ? "bg-green-600 cursor-default"
+                  : "bg-yellow-500 hover:bg-yellow-600"
+              }`}
+          >
+            {isSaved ? "Saved ✓" : "⭐ Save"}
+          </button>
+        </div>
       </div>
 
       {/* Author, Genre & Description */}
@@ -43,7 +87,6 @@ function NovelDetails() {
           by {novel.author}
         </p>
 
-        {/* Genres */}
         {novel.genre && (
           <div className="flex flex-wrap gap-2">
             {novel.genre.map((g, index) => (
