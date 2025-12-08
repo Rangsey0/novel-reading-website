@@ -25,6 +25,13 @@ function Navbar() {
       : document.documentElement.classList.remove("dark");
   }, [theme]);
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = () => setIsDropdownOpen(false);
+    window.addEventListener("click", handleClickOutside);
+    return () => window.removeEventListener("click", handleClickOutside);
+  }, []);
+
   // Helper to check active route
   const isActive = (path) =>
     location.pathname === path
@@ -44,13 +51,13 @@ function Navbar() {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
-          {/* Browse Dropdown */}
-          <div
-            className="relative"
-            onMouseEnter={() => setIsDropdownOpen(true)}
-            onMouseLeave={() => setIsDropdownOpen(false)}
-          >
+          {/* Browse Dropdown (click) */}
+          <div className="relative">
             <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsDropdownOpen(!isDropdownOpen);
+              }}
               className={`flex items-center gap-1 ${isActive(
                 "/browse"
               )} transition-colors`}
@@ -59,7 +66,10 @@ function Navbar() {
             </button>
 
             {isDropdownOpen && (
-              <div className="absolute left-1/2 mt-3 w-48 -translate-x-1/2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-xl animate-fade-in-down z-50">
+              <div
+                onClick={(e) => e.stopPropagation()}
+                className="absolute left-1/2 mt-3 w-48 -translate-x-1/2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-xl animate-fade-in-down z-50"
+              >
                 <Link
                   to="/browse"
                   className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition"
