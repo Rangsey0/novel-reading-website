@@ -50,6 +50,7 @@ The UI is designed to be clean, minimal, and accessible with full **light/dark m
 
 ## 🧭 Future Improvements
 
+- Improve profile page
 - Authentication
 - User reading progress
 
