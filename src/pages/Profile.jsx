@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 function Profile() {
   const [profile, setProfile] = useState(null);
   const [savedNovels, setSavedNovels] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [novelLoading, setNovelLoading] = useState(true);
 
+  // Load profile + saved novels
   useEffect(() => {
     const loadProfile = async () => {
       try {
@@ -20,17 +23,32 @@ function Profile() {
 
     loadProfile();
 
-    const saved = JSON.parse(localStorage.getItem("savedNovels")) || [];
-    setSavedNovels(saved);
+    // Simulate small loading for novels
+    setTimeout(() => {
+      const saved = JSON.parse(localStorage.getItem("savedNovels")) || [];
+      setSavedNovels(saved);
+      setNovelLoading(false);
+    }, 400);
   }, []);
 
+  // Remove a single novel with confirmation
   const removeNovel = (id) => {
+    if (!window.confirm("Are you sure you want to remove this novel?")) return;
+
     const updated = savedNovels.filter((n) => n.id !== id);
     setSavedNovels(updated);
     localStorage.setItem("savedNovels", JSON.stringify(updated));
   };
 
-  // ⌛ Loading Skeleton
+  // Clear ALL novels
+  const clearAll = () => {
+    if (!window.confirm("Clear all saved novels?")) return;
+
+    setSavedNovels([]);
+    localStorage.removeItem("savedNovels");
+  };
+
+  // Loading Skeleton for Profile
   if (loading) {
     return (
       <div className="animate-pulse p-8 max-w-xl mx-auto">
@@ -43,9 +61,13 @@ function Profile() {
 
   return (
     <div className="container mx-auto px-4 py-10 text-black dark:text-white">
-      {/* Profile Card with Gradient + Glassmorphism */}
-      <div className="relative bg-white/70 dark:bg-gray-900/60 backdrop-blur-xl border border-gray-300 dark:border-gray-700 p-8 rounded-3xl shadow-2xl max-w-xl mx-auto mb-12 text-center">
-        {/* Top Gradient Decorative Line */}
+      {/* Profile Card */}
+      <motion.div
+        initial={{ opacity: 0, y: 25 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className="relative bg-white/70 dark:bg-gray-900/60 backdrop-blur-xl border border-gray-300 dark:border-gray-700 p-8 rounded-3xl shadow-2xl max-w-xl mx-auto mb-12 text-center"
+      >
         <div className="absolute top-0 inset-x-0 h-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-t-3xl"></div>
 
         <img
@@ -68,28 +90,68 @@ function Profile() {
         >
           Edit Profile (Coming Soon)
         </button>
-      </div>
+
+        {/* Reading Stats */}
+        <div className="mt-8 grid grid-cols-3 gap-4 text-center">
+          <div>
+            <p className="text-xl font-bold">{savedNovels.length}</p>
+            <span className="text-gray-500 dark:text-gray-400 text-sm">
+              Saved
+            </span>
+          </div>
+
+          <div>
+            <p className="text-xl font-bold">234</p>
+            <span className="text-gray-500 dark:text-gray-400 text-sm">
+              Chapters
+            </span>
+          </div>
+
+          <div>
+            <p className="text-xl font-bold">🔥 7</p>
+            <span className="text-gray-500 dark:text-gray-400 text-sm">
+              Streak
+            </span>
+          </div>
+        </div>
+      </motion.div>
 
       {/* Saved Novels Header */}
       <div className="flex items-center justify-between mb-5">
         <h3 className="text-2xl font-bold">⭐ Saved Novels</h3>
+
         {savedNovels.length > 0 && (
-          <span className="text-sm text-gray-500 dark:text-gray-400">
-            {savedNovels.length} saved
-          </span>
+          <button
+            onClick={clearAll}
+            className="text-red-500 text-sm hover:underline"
+          >
+            Clear All
+          </button>
         )}
       </div>
 
-      {/* Empty State */}
-      {savedNovels.length === 0 ? (
+      {/* Saved Novels Loading Skeleton */}
+      {novelLoading ? (
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+          {[1, 2, 3, 4].map((i) => (
+            <div
+              key={i}
+              className="animate-pulse bg-gray-200 dark:bg-gray-800 h-52 rounded-2xl"
+            ></div>
+          ))}
+        </div>
+      ) : savedNovels.length === 0 ? (
         <p className="text-gray-500 dark:text-gray-400 italic text-center">
           No saved novels yet.
         </p>
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
           {savedNovels.map((novel) => (
-            <div
+            <motion.div
               key={novel.id}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.25 }}
               className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-lg overflow-hidden transform hover:scale-[1.03] hover:shadow-2xl transition duration-300"
             >
               <img
@@ -110,7 +172,7 @@ function Profile() {
                   Remove
                 </button>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       )}
