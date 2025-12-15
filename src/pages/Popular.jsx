@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import api from "../services/api"; // Axios instance
 
 function Popular() {
   const [novels, setNovels] = useState([]);
@@ -9,10 +10,13 @@ function Popular() {
   const novelsPerPage = 12;
 
   useEffect(() => {
-    fetch("/data/novels.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const popularList = data.filter((item) => item.isPopular === true);
+    // Fetch all novels from API
+    api
+      .get("/novels")
+      .then((res) => {
+        const popularList = res.data.filter(
+          (item) => item.is_popular === 1 || item.is_popular === true
+        );
         setNovels(popularList);
       })
       .catch((err) => console.error("Failed to load novels:", err));
@@ -30,7 +34,7 @@ function Popular() {
       case "za":
         return b.title.localeCompare(a.title);
       case "newest":
-        return new Date(b.updatedAt) - new Date(a.updatedAt);
+        return new Date(b.updated_at) - new Date(a.updated_at);
       default:
         return 0;
     }
@@ -117,14 +121,14 @@ function Popular() {
                 <p className="text-gray-300 text-sm mt-1">by {novel.author}</p>
 
                 {/* Genres */}
-                {novel.genre && (
+                {novel.genres && (
                   <div className="flex flex-wrap gap-2 mt-2">
-                    {novel.genre.map((g, idx) => (
+                    {novel.genres.map((g) => (
                       <span
-                        key={idx}
+                        key={g.id}
                         className="bg-purple-600/70 text-white text-xs px-2 py-1 rounded-full"
                       >
-                        {g}
+                        {g.name}
                       </span>
                     ))}
                   </div>

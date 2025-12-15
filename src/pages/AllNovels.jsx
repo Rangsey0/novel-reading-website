@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import api from "../services/api";
 
 function AllNovels() {
   const [novels, setNovels] = useState([]);
@@ -10,16 +11,16 @@ function AllNovels() {
   const novelsPerPage = 12;
 
   useEffect(() => {
-    fetch("/data/novels.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setNovels(data);
+    api
+      .get("/novels")
+      .then((res) => {
+        setNovels(res.data);
 
-        // extract all unique genres from novels
+        // Extract unique genre names from API
         const allGenres = new Set();
-        data.forEach((novel) => {
-          if (novel.genre) {
-            novel.genre.forEach((g) => allGenres.add(g));
+        res.data.forEach((novel) => {
+          if (novel.genres && Array.isArray(novel.genres)) {
+            novel.genres.forEach((g) => allGenres.add(g.name));
           }
         });
 
@@ -32,11 +33,12 @@ function AllNovels() {
   const filteredNovels =
     selectedGenre === "All"
       ? novels
-      : novels.filter((novel) => novel.genre?.includes(selectedGenre));
+      : novels.filter((novel) =>
+          novel.genres?.some((g) => g.name === selectedGenre)
+        );
 
   // Pagination
   const totalPages = Math.ceil(filteredNovels.length / novelsPerPage);
-
   const indexOfLast = currentPage * novelsPerPage;
   const indexOfFirst = indexOfLast - novelsPerPage;
   const currentNovels = filteredNovels.slice(indexOfFirst, indexOfLast);
@@ -59,19 +61,15 @@ function AllNovels() {
             setCurrentPage(1);
           }}
           className="
-      px-4 py-2 rounded-lg shadow-md border
-      bg-white text-gray-800
-      dark:bg-gray-800 dark:text-gray-200 dark:border-gray-700
-      focus:outline-none focus:ring-2 focus:ring-indigo-500
-      transition
-    "
+            px-4 py-2 rounded-lg shadow-md border
+            bg-white text-gray-800
+            dark:bg-gray-800 dark:text-gray-200 dark:border-gray-700
+            focus:outline-none focus:ring-2 focus:ring-indigo-500
+            transition
+          "
         >
           {genres.map((g, idx) => (
-            <option
-              key={idx}
-              value={g}
-              className="dark:bg-gray-800 dark:text-gray-200"
-            >
+            <option key={idx} value={g}>
               {g}
             </option>
           ))}
@@ -99,14 +97,14 @@ function AllNovels() {
               <p className="text-gray-300 text-sm mt-1">by {novel.author}</p>
 
               {/* Genres */}
-              {novel.genre && (
+              {novel.genres && (
                 <div className="flex flex-wrap gap-2 mt-2">
-                  {novel.genre.map((g, index) => (
+                  {novel.genres.map((g) => (
                     <span
-                      key={index}
+                      key={g.id}
                       className="bg-purple-600/70 text-white text-xs px-2 py-1 rounded-full"
                     >
-                      {g}
+                      {g.name}
                     </span>
                   ))}
                 </div>

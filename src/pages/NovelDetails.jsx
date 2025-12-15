@@ -1,32 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import api from "../services/api";
 
 function NovelDetails() {
   const { id } = useParams();
   const [novel, setNovel] = useState(null);
   const [isSaved, setIsSaved] = useState(false);
 
-  // Load novel + check if saved
   useEffect(() => {
-    fetch("/data/novels.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const found = data.find((n) => n.id === parseInt(id));
-        setNovel(found);
+    // Fetch novel from API
+    api
+      .get(`/novels/${id}`)
+      .then((res) => {
+        setNovel(res.data);
 
         // Check if already saved
         const saved = JSON.parse(localStorage.getItem("savedNovels")) || [];
         setIsSaved(saved.some((n) => n.id === parseInt(id)));
       })
-      .catch((error) => console.error("Error loading novel:", error));
+      .catch((error) => {
+        console.error("Error loading novel:", error);
+      });
   }, [id]);
 
-  // Save novel to localStorage
   const saveNovel = () => {
     if (!novel) return;
 
     const saved = JSON.parse(localStorage.getItem("savedNovels")) || [];
-
     if (!saved.some((n) => n.id === novel.id)) {
       saved.push({
         id: novel.id,
@@ -87,14 +87,14 @@ function NovelDetails() {
           by {novel.author}
         </p>
 
-        {novel.genre && (
+        {novel.genres && (
           <div className="flex flex-wrap gap-2">
-            {novel.genre.map((g, index) => (
+            {novel.genres.map((g) => (
               <span
-                key={index}
+                key={g.id}
                 className="bg-purple-600/70 text-white text-xs px-2 py-1 rounded-full"
               >
-                {g}
+                {g.name}
               </span>
             ))}
           </div>
@@ -114,7 +114,7 @@ function NovelDetails() {
           {novel.chapters.map((ch) => (
             <li key={ch.id}>
               <Link
-                to={`/novel/${novel.id}/chapter/${ch.id}`}
+                to={`/novel/${novel.id}/chapter/${ch.chapter_number}`} // use chapter_number
                 className="block px-5 py-3 rounded-xl border border-gray-200 dark:border-gray-700
                            bg-gradient-to-r from-blue-50 to-white dark:from-blue-900 dark:to-gray-800
                            shadow-lg hover:shadow-2xl hover:scale-105 transform transition-all duration-300

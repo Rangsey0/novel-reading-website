@@ -15,7 +15,7 @@ function NovelCard({ novel }) {
     >
       {/* Cover Image */}
       <img
-        src={novel.cover}
+        src={novel.cover || "/placeholder.jpg"} // fallback if cover missing
         alt={novel.title}
         className="w-full h-64 object-cover relative z-10 group-hover:brightness-90 transition-all duration-500"
       />
@@ -25,20 +25,26 @@ function NovelCard({ novel }) {
 
       {/* Text Content */}
       <div className="absolute bottom-0 p-5 text-white z-30">
-        <h2 className="text-2xl font-extrabold tracking-wide">{novel.title}</h2>
-        <p className="text-sm text-gray-200">{novel.author}</p>
-        <p className="mt-2 text-xs line-clamp-3">{novel.description}</p>
+        <h2 className="text-2xl font-extrabold tracking-wide">
+          {novel.title || "Unknown Title"}
+        </h2>
+        <p className="text-sm text-gray-200">
+          {novel.author || "Unknown Author"}
+        </p>
+        <p className="mt-2 text-xs line-clamp-3">{novel.description || ""}</p>
 
         {/* Genres */}
         <div className="mt-2 flex flex-wrap gap-2">
-          {novel.genre.map((g, index) => (
-            <span
-              key={index}
-              className="bg-purple-600/70 text-white text-xs px-2 py-1 rounded-full"
-            >
-              {g}
-            </span>
-          ))}
+          {Array.isArray(novel.genre)
+            ? novel.genre.map((g, index) => (
+                <span
+                  key={index}
+                  className="bg-purple-600/70 text-white text-xs px-2 py-1 rounded-full"
+                >
+                  {g}
+                </span>
+              ))
+            : null}
         </div>
 
         {/* Hover info panel */}

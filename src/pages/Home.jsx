@@ -1,23 +1,28 @@
 import React, { useEffect, useState } from "react";
 import NovelCard from "../components/NovelCard";
 import MostViewedCard from "../components/MostViewedCard";
+import api from "../services/api";
 
 function Home() {
   const [novels, setNovels] = useState([]);
   const [mostViewed, setMostViewed] = useState([]);
 
   useEffect(() => {
-    fetch("/data/novels.json")
-      .then((res) => res.json())
-      .then((data) => {
+    api
+      .get("/novels")
+      .then((res) => {
+        const data = res.data;
+
         // Left side: first 6 novels
         setNovels(data.slice(0, 6));
 
-        // Right side: sort by views (highest → lowest)
+        // Right side: sort by views
         const sorted = [...data].sort((a, b) => b.views - a.views);
-        setMostViewed(sorted.slice(0, 15)); // top 15
+        setMostViewed(sorted.slice(0, 15));
       })
-      .catch((error) => console.error("Error loading novels:", error));
+      .catch((err) => {
+        console.error("API Error:", err);
+      });
   }, []);
 
   return (

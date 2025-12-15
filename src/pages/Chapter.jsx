@@ -1,17 +1,39 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import api from "../services/api"; // Axios instance
 
 function Chapter() {
   const { id, chapterId } = useParams();
   const [chapter, setChapter] = useState(null);
 
   useEffect(() => {
-    fetch("/data/novels.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const novel = data.find((n) => n.id === parseInt(id));
-        const ch = novel.chapters.find((c) => c.id === parseInt(chapterId));
-        setChapter({ ...ch, novelTitle: novel.title });
+    api
+      .get(`/novels/${id}`)
+      .then((res) => {
+        const novel = res.data;
+
+        // Find chapter by chapter_number
+        const ch = novel.chapters.find(
+          (c) => c.chapter_number === parseInt(chapterId)
+        );
+
+        if (ch) {
+          setChapter({ ...ch, novelTitle: novel.title });
+        } else {
+          setChapter({
+            title: "Chapter not found",
+            content: "",
+            novelTitle: novel.title,
+          });
+        }
+      })
+      .catch((err) => {
+        console.error("Failed to load chapter:", err);
+        setChapter({
+          title: "Error",
+          content: "Could not load chapter.",
+          novelTitle: "",
+        });
       });
   }, [id, chapterId]);
 
