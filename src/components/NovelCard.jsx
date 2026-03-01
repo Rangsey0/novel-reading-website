@@ -35,16 +35,15 @@ function NovelCard({ novel }) {
 
         {/* Genres */}
         <div className="mt-2 flex flex-wrap gap-2">
-          {Array.isArray(novel.genre)
-            ? novel.genre.map((g, index) => (
-                <span
-                  key={index}
-                  className="bg-purple-600/70 text-white text-xs px-2 py-1 rounded-full"
-                >
-                  {g}
-                </span>
-              ))
-            : null}
+          {Array.isArray(novel.genres) &&
+            novel.genres.map((g) => (
+              <span
+                key={g.id}
+                className="bg-purple-600/70 text-white text-xs px-2 py-1 rounded-full"
+              >
+                {g.name}
+              </span>
+            ))}
         </div>
 
         {/* Hover info panel */}
