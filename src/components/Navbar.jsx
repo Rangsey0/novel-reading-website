@@ -46,7 +46,7 @@ function Navbar() {
           to="/"
           className="text-3xl font-extrabold tracking-wide text-indigo-600 dark:text-indigo-400"
         >
-          Seynovel
+          TaleHaven
         </Link>
 
         {/* Desktop Menu */}
@@ -59,7 +59,7 @@ function Navbar() {
                 setIsDropdownOpen(!isDropdownOpen);
               }}
               className={`flex items-center gap-1 ${isActive(
-                "/browse"
+                "/browse",
               )} transition-colors`}
             >
               <Menu size={25} />
