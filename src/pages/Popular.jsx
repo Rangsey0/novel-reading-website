@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import api from "../services/api"; // Axios instance
+import NovelCard from "../components/NovelCard";
 
 function Popular() {
   const [novels, setNovels] = useState([]);
@@ -15,7 +15,7 @@ function Popular() {
       .get("/novels")
       .then((res) => {
         const popularList = res.data.filter(
-          (item) => item.is_popular === 1 || item.is_popular === true
+          (item) => item.is_popular === 1 || item.is_popular === true,
         );
         setNovels(popularList);
       })
@@ -85,61 +85,11 @@ function Popular() {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {currentNovels.map((novel, index) => (
-            <Link
+            <NovelCard
               key={novel.id}
-              to={`/novel/${novel.id}`}
-              className="group relative block rounded-xl overflow-hidden shadow-lg transform transition-all duration-300 hover:scale-105"
-            >
-              {/* Cover */}
-              <img
-                src={novel.cover}
-                alt={novel.title}
-                className="w-full h-72 object-cover brightness-90 group-hover:brightness-75 transition-all duration-300"
-              />
-
-              {/* Rank Badge */}
-              <div
-                className={`absolute top-2 left-2 text-xs font-bold px-3 py-1 rounded-md shadow-lg z-20 text-white ${
-                  indexOfFirst + index + 1 === 1
-                    ? "bg-yellow-400"
-                    : indexOfFirst + index + 1 === 2
-                    ? "bg-gray-400"
-                    : indexOfFirst + index + 1 === 3
-                    ? "bg-orange-400"
-                    : "bg-indigo-600"
-                }`}
-              >
-                #{indexOfFirst + index + 1}
-              </div>
-
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70 group-hover:opacity-90"></div>
-
-              {/* Content Overlay */}
-              <div className="absolute bottom-0 p-4 w-full">
-                <h2 className="text-xl font-bold text-white">{novel.title}</h2>
-                <p className="text-gray-300 text-sm mt-1">by {novel.author}</p>
-
-                {/* Genres */}
-                {novel.genres && (
-                  <div className="flex flex-wrap gap-2 mt-2">
-                    {novel.genres.map((g) => (
-                      <span
-                        key={g.id}
-                        className="bg-purple-600/70 text-white text-xs px-2 py-1 rounded-full"
-                      >
-                        {g.name}
-                      </span>
-                    ))}
-                  </div>
-                )}
-
-                {/* Description */}
-                <p className="text-gray-200 text-sm mt-2 line-clamp-3">
-                  {novel.description}
-                </p>
-              </div>
-            </Link>
+              novel={novel}
+              rank={indexOfFirst + index + 1}
+            />
           ))}
         </div>
       )}

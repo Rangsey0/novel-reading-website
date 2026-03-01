@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function NovelCard({ novel }) {
+function NovelCard({ novel, rank }) {
   const navigate = useNavigate();
 
   const goToDetail = () => {
@@ -13,6 +13,22 @@ function NovelCard({ novel }) {
       onClick={goToDetail}
       className="relative group cursor-pointer rounded-2xl overflow-hidden shadow-2xl hover:shadow-4xl transition-transform transform hover:scale-105 hover:-translate-y-1 duration-500"
     >
+      {rank && (
+        <div
+          className={`absolute top-2 left-2 text-xs font-bold px-3 py-1 rounded-md shadow-lg z-40 text-white ${
+            rank === 1
+              ? "bg-yellow-400"
+              : rank === 2
+                ? "bg-gray-400"
+                : rank === 3
+                  ? "bg-orange-400"
+                  : "bg-indigo-600"
+          }`}
+        >
+          #{rank}
+        </div>
+      )}
+
       {/* Cover Image */}
       <img
         src={novel.cover || "/placeholder.jpg"} // fallback if cover missing
