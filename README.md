@@ -1,4 +1,4 @@
-# 📚 Seynovel – Novel Reading Website (Frontend)
+# 📚 TaleHaven – Novel Reading Website (Frontend)
 
 A modern, responsive novel reading website built with **React** and **Tailwind CSS**.  
 The platform allows users to browse novels, view popular titles, and enjoy an optimized reading experience across devices.  
