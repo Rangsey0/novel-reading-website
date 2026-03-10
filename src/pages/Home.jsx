@@ -35,7 +35,7 @@ function Home() {
       </div>
 
       {/* RIGHT SIDE — Most Viewed */}
-      <div className="lg:col-span-1 bg-white dark:bg-gray-900 p-4 rounded-xl shadow-md h-[600px] overflow-y-auto">
+      <div className="lg:col-span-1 bg-white dark:bg-black p-4 rounded-xl shadow-md h-[600px] overflow-y-auto">
         <h2 className="text-xl font-bold mb-4">Most Viewed</h2>
         <div className="space-y-4">
           {mostViewed.map((novel, index) => (

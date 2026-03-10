@@ -11,24 +11,20 @@ function AllNovels() {
 
   const novelsPerPage = 12;
 
-  // ✅ Move useMemo here, before early returns
-  const genres = useMemo(
-    () => [
-      "All",
-      ...Array.from(
-        new Set(novels.flatMap((n) => n.genres?.map((g) => g.name))),
-      ),
-    ],
-    [novels],
-  );
+  // ✅ Correctly get genres from novels
+  const genres = useMemo(() => {
+    const allGenres = novels.flatMap((n) => n.genre || []);
+    return ["All", ...Array.from(new Set(allGenres))];
+  }, [novels]);
 
   if (loading) return <Loading />;
   if (error) return <Error message={error} />;
 
+  // ✅ Filter novels using genre strings
   const filteredNovels =
     selectedGenre === "All"
       ? novels
-      : novels.filter((n) => n.genres?.some((g) => g.name === selectedGenre));
+      : novels.filter((n) => n.genre?.includes(selectedGenre));
 
   const totalPages = Math.ceil(filteredNovels.length / novelsPerPage);
   const indexOfLast = currentPage * novelsPerPage;

@@ -1,3 +1,4 @@
+// src/hooks/useNovels.js
 import { useEffect, useState } from "react";
 import api from "../services/api";
 
@@ -10,7 +11,7 @@ function useNovels() {
     setLoading(true);
 
     api
-      .get("/novels")
+      .get("/data/novels.json") // <-- fetch from your JSON
       .then((res) => {
         setNovels(res.data);
         setLoading(false);

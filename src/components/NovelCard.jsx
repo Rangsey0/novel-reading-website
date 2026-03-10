@@ -33,7 +33,7 @@ function NovelCard({ novel, rank }) {
       <img
         src={novel.cover || "/placeholder.jpg"} // fallback if cover missing
         alt={novel.title}
-        className="w-full h-64 object-cover relative z-10 group-hover:brightness-90 transition-all duration-500"
+        className="w-full h-full object-cover relative z-10 group-hover:brightness-90 transition-all duration-500"
       />
 
       {/* Gradient Overlay */}
@@ -50,6 +50,17 @@ function NovelCard({ novel, rank }) {
         <p className="mt-2 text-xs line-clamp-3">{novel.description || ""}</p>
 
         {/* Genres */}
+        <div className="mt-2 flex flex-wrap gap-2">
+          {Array.isArray(novel.genre) && // <-- use 'genre' as in your JSON
+            novel.genre.map((g, index) => (
+              <span
+                key={index} // use index since genre is just a string
+                className="bg-purple-600/70 text-white text-xs px-2 py-1 rounded-full"
+              >
+                {g}
+              </span>
+            ))}
+        </div>
         <div className="mt-2 flex flex-wrap gap-2">
           {Array.isArray(novel.genres) &&
             novel.genres.map((g) => (

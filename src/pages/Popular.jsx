@@ -11,9 +11,9 @@ function Popular() {
 
   const novelsPerPage = 12;
 
-  // Filter only popular novels using useMemo for performance
+  // ✅ Use correct field: isPopular
   const popularNovels = useMemo(
-    () => novels.filter((n) => n.is_popular === 1 || n.is_popular === true),
+    () => novels.filter((n) => n.isPopular === true),
     [novels],
   );
 
@@ -30,7 +30,7 @@ function Popular() {
         case "za":
           return b.title.localeCompare(a.title);
         case "newest":
-          return new Date(b.updated_at) - new Date(a.updated_at);
+          return new Date(b.updatedAt) - new Date(a.updatedAt);
         default:
           return 0;
       }
@@ -49,13 +49,11 @@ function Popular() {
     }
   };
 
-  // Handle loading and error states
   if (loading) return <Loading />;
   if (error) return <Error message={error} />;
 
   return (
     <div className="container mx-auto px-4 py-10 animate-fade-in">
-      {/* Title */}
       <h1 className="text-4xl font-extrabold text-center mb-6 tracking-wide text-indigo-600 dark:text-indigo-400">
         🔥 Popular Novels
       </h1>
