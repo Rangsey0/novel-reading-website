@@ -46,7 +46,7 @@ function Navbar() {
           to="/"
           className="text-3xl font-extrabold tracking-wide text-indigo-600 dark:text-indigo-400"
         >
-          TaleHaven
+          TH
         </Link>
 
         {/* Desktop Menu */}
