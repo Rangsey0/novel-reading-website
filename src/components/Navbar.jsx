@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Sun, Moon, User } from "lucide-react";
+import SearchBar from "./SearchBar";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,6 +53,9 @@ function Navbar() {
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
           {/* Browse Dropdown (click) */}
+
+          <SearchBar />
+
           <div className="relative">
             <button
               onClick={(e) => {
@@ -123,6 +127,9 @@ function Navbar() {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 px-4 py-4 space-y-4 animate-fade-in-down">
+          {/* SEARCH BAR */}
+          <SearchBar />
+
           {/* Theme Toggle */}
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
