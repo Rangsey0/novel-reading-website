@@ -6,6 +6,8 @@ import Chapter from "./pages/Chapter";
 import AllNovels from "./pages/AllNovels";
 import Popular from "./pages/Popular";
 import Profile from "./pages/Profile";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -19,10 +21,11 @@ function App() {
             <Route path="/novel/:id" element={<NovelDetails />} />
             <Route path="/novel/:id/chapter/:chapterId" element={<Chapter />} />
 
-            {/* New routes */}
             <Route path="/browse" element={<AllNovels />} />
             <Route path="/popular" element={<Popular />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
           </Routes>
         </div>
       </Router>

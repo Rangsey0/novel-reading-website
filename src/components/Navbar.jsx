@@ -11,29 +11,42 @@ function Navbar() {
 
   const location = useLocation();
 
-  // Load profile image
   useEffect(() => {
-    fetch("/data/profile.json")
-      .then((res) => res.json())
-      .then((data) => setProfileImage(data.profileImage))
-      .catch(() => setProfileImage(null));
+    const storedTheme = localStorage.getItem("theme");
+
+    if (storedTheme) {
+      setTheme(storedTheme);
+    }
   }, []);
 
-  // Apply theme
   useEffect(() => {
-    theme === "dark"
-      ? document.documentElement.classList.add("dark")
-      : document.documentElement.classList.remove("dark");
+    localStorage.setItem("theme", theme);
+
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
   }, [theme]);
 
-  // Close dropdown when clicking outside
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+
+    if (storedUser?.profileImage) {
+      setProfileImage(storedUser.profileImage);
+    } else {
+      setProfileImage(null);
+    }
+  }, [location.pathname]);
+
   useEffect(() => {
     const handleClickOutside = () => setIsDropdownOpen(false);
+
     window.addEventListener("click", handleClickOutside);
+
     return () => window.removeEventListener("click", handleClickOutside);
   }, []);
 
-  // Helper to check active route
   const isActive = (path) =>
     location.pathname === path
       ? "text-indigo-500 dark:text-indigo-400 font-semibold"
@@ -42,7 +55,6 @@ function Navbar() {
   return (
     <nav className="backdrop-blur-md bg-white/70 dark:bg-gray-900/60 shadow-lg sticky top-0 z-50 transition-all">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        {/* Logo */}
         <Link
           to="/"
           className="text-3xl font-extrabold tracking-wide text-indigo-600 dark:text-indigo-400"
@@ -50,10 +62,7 @@ function Navbar() {
           TH
         </Link>
 
-        {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
-          {/* Browse Dropdown (click) */}
-
           <SearchBar />
 
           <div className="relative">
@@ -80,6 +89,7 @@ function Navbar() {
                 >
                   📚 All Novels
                 </Link>
+
                 <Link
                   to="/popular"
                   className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition"
@@ -90,7 +100,6 @@ function Navbar() {
             )}
           </div>
 
-          {/* Theme Toggle */}
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             className="p-2 rounded-xl bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
@@ -98,8 +107,10 @@ function Navbar() {
             {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
           </button>
 
-          {/* Profile Avatar */}
-          <Link to="/profile" className="relative group">
+          <Link
+            to={profileImage ? "/profile" : "/login"}
+            className="relative group"
+          >
             {profileImage ? (
               <img
                 src={profileImage}
@@ -115,7 +126,6 @@ function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile Hamburger */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="md:hidden focus:outline-none"
@@ -124,13 +134,10 @@ function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 px-4 py-4 space-y-4 animate-fade-in-down">
-          {/* SEARCH BAR */}
           <SearchBar />
 
-          {/* Theme Toggle */}
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             className="w-full p-3 bg-gray-200 dark:bg-gray-700 rounded-lg flex justify-center text-black dark:text-white"
@@ -155,7 +162,7 @@ function Navbar() {
           </Link>
 
           <Link
-            to="/profile"
+            to={profileImage ? "/profile" : "/login"}
             onClick={() => setIsOpen(false)}
             className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700"
           >
@@ -168,7 +175,8 @@ function Navbar() {
             ) : (
               <User size={26} />
             )}
-            <span>Profile</span>
+
+            <span>{profileImage ? "Profile" : "Login"}</span>
           </Link>
         </div>
       )}

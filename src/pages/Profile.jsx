@@ -1,37 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
+  const navigate = useNavigate();
+
   const [profile, setProfile] = useState(null);
   const [savedNovels, setSavedNovels] = useState([]);
   const [loading, setLoading] = useState(true);
   const [novelLoading, setNovelLoading] = useState(true);
 
-  // Load profile + saved novels
   useEffect(() => {
-    const loadProfile = async () => {
-      try {
-        const res = await fetch("/data/profile.json");
-        const data = await res.json();
-        setProfile(data);
-      } catch (error) {
-        console.error("Failed to load profile:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+    const storedUser = localStorage.getItem("user");
 
-    loadProfile();
+    if (!storedUser) {
+      navigate("/login");
+      return;
+    }
 
-    // Simulate small loading for novels
+    setProfile(JSON.parse(storedUser));
+    setLoading(false);
+
     setTimeout(() => {
       const saved = JSON.parse(localStorage.getItem("savedNovels")) || [];
       setSavedNovels(saved);
       setNovelLoading(false);
     }, 400);
-  }, []);
+  }, [navigate]);
 
-  // Remove a single novel with confirmation
   const removeNovel = (id) => {
     if (!window.confirm("Are you sure you want to remove this novel?")) return;
 
@@ -40,7 +36,6 @@ function Profile() {
     localStorage.setItem("savedNovels", JSON.stringify(updated));
   };
 
-  // Clear ALL novels
   const clearAll = () => {
     if (!window.confirm("Clear all saved novels?")) return;
 
@@ -48,20 +43,23 @@ function Profile() {
     localStorage.removeItem("savedNovels");
   };
 
-  // Loading Skeleton for Profile
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
+
   if (loading) {
     return (
       <div className="animate-pulse p-8 max-w-xl mx-auto">
-        <div className="h-28 w-28 bg-gray-300 dark:bg-gray-700 rounded-full mx-auto mb-4"></div>
-        <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-1/2 mx-auto mb-2"></div>
-        <div className="h-3 bg-gray-300 dark:bg-gray-700 rounded w-1/3 mx-auto"></div>
+        <div className="h-28 w-28 bg-gray-300 rounded-full mx-auto mb-4"></div>
+        <div className="h-4 bg-gray-300 rounded w-1/2 mx-auto mb-2"></div>
+        <div className="h-3 bg-gray-300 rounded w-1/3 mx-auto"></div>
       </div>
     );
   }
 
   return (
     <div className="container mx-auto px-4 py-10 text-black dark:text-white">
-      {/* Profile Card */}
       <motion.div
         initial={{ opacity: 0, y: 25 }}
         animate={{ opacity: 1, y: 0 }}
@@ -84,41 +82,42 @@ function Profile() {
           {profile?.userEmail}
         </p>
 
-        <button
-          disabled
-          className="mt-5 bg-gradient-to-r from-indigo-500 to-purple-600 opacity-90 px-5 py-2 rounded-xl text-white font-semibold shadow-md hover:opacity-100 transition cursor-not-allowed"
-        >
-          Edit Profile (Coming Soon)
-        </button>
+        <div className="flex flex-col sm:flex-row gap-3 justify-center mt-5">
+          <button
+            disabled
+            className="bg-gradient-to-r from-indigo-500 to-purple-600 opacity-90 px-5 py-2 rounded-xl text-white font-semibold shadow-md cursor-not-allowed"
+          >
+            Edit Profile
+          </button>
 
-        {/* Reading Stats */}
+          <button
+            onClick={handleLogout}
+            className="bg-red-500 hover:bg-red-600 px-5 py-2 rounded-xl text-white font-semibold transition"
+          >
+            Logout
+          </button>
+        </div>
+
         <div className="mt-8 grid grid-cols-3 gap-4 text-center">
           <div>
             <p className="text-xl font-bold">{savedNovels.length}</p>
-            <span className="text-gray-500 dark:text-gray-400 text-sm">
-              Saved
-            </span>
+            <span className="text-gray-500 text-sm">Saved</span>
           </div>
 
           <div>
             <p className="text-xl font-bold">234</p>
-            <span className="text-gray-500 dark:text-gray-400 text-sm">
-              Chapters
-            </span>
+            <span className="text-gray-500 text-sm">Chapters</span>
           </div>
 
           <div>
             <p className="text-xl font-bold">🔥 7</p>
-            <span className="text-gray-500 dark:text-gray-400 text-sm">
-              Streak
-            </span>
+            <span className="text-gray-500 text-sm">Streak</span>
           </div>
         </div>
       </motion.div>
 
-      {/* Saved Novels Header */}
       <div className="flex items-center justify-between mb-5">
-        <h3 className="text-2xl font-bold">⭐ Saved Novels</h3>
+        <h3 className="text-2xl font-bold">Saved Novels</h3>
 
         {savedNovels.length > 0 && (
           <button
@@ -130,7 +129,6 @@ function Profile() {
         )}
       </div>
 
-      {/* Saved Novels Loading Skeleton */}
       {novelLoading ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
           {[1, 2, 3, 4].map((i) => (
@@ -141,9 +139,7 @@ function Profile() {
           ))}
         </div>
       ) : savedNovels.length === 0 ? (
-        <p className="text-gray-500 dark:text-gray-400 italic text-center">
-          No saved novels yet.
-        </p>
+        <p className="text-gray-500 italic text-center">No saved novels yet.</p>
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
           {savedNovels.map((novel) => (
@@ -152,7 +148,7 @@ function Profile() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.25 }}
-              className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-lg overflow-hidden transform hover:scale-[1.03] hover:shadow-2xl transition duration-300"
+              className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-lg overflow-hidden"
             >
               <img
                 src={novel.cover}
