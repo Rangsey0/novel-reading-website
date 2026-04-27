@@ -9,8 +9,10 @@ The UI is designed to be clean, minimal, and accessible with full **light/dark m
 ## 🚀 Features
 
 - 📚 Browse all novels with structured navigation
+- 🔍 Search novels by title or keyword
 - ⭐ Popular novels section
 - 👤 User profile with avatar support
+- 🔐 Mock authentication (login/register simulation with local storage)
 - 🌙 Light/Dark theme toggle with persistent preference
 - 📱 Fully responsive layout for desktop & mobile
 - ⚡ Fast SPA routing using React Router
